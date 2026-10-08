@@ -1,0 +1,19 @@
+services:
+  postgres:
+    image: postgres:16
+    container_name: sprintera-postgres
+    restart: unless-stopped
+
+    environment:
+      POSTGRES_DB: SprintEra
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: sprintera123
+
+    ports:
+      - '5433:5432'
+
+    volumes:
+      - sprintera_postgres_data:/var/lib/postgresql/data
+
+volumes:
+  sprintera_postgres_data:
