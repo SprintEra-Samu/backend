@@ -1,0 +1,13 @@
+const sequelize = require('../config/database');
+const User = require('./User');
+const Role = require('./Role');
+const Permission = require('./Permission');
+const RolePermission = require('./RolePermission');
+
+module.exports = {
+  sequelize,
+  User,
+  Role,
+  Permission,
+  RolePermission
+};
