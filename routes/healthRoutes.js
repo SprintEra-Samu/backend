@@ -7,6 +7,7 @@ const healthController = require('../controllers/healthController');
  * /api/health:
  *   get:
  *     summary: API ve Veritabanı sağlık durumu kontrolü
+ *     tags: [Health]
  *     responses:
  *       200:
  *         description: Başarılı

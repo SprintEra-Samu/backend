@@ -7,6 +7,8 @@ const { sequelize } = require('./models');
 
 const healthRoutes = require('./routes/healthRoutes');
 const authRoutes = require('./routes/authRoutes');
+const projectRoutes = require('./routes/projectRoutes');
+const taskRoutes = require('./routes/taskRoutes');
 const { errorHandler, notFoundHandler } = require('./middleware/errorMiddleware');
 
 const app = express();
@@ -24,6 +26,8 @@ app.use('/api/docs', swaggerUi.serve, swaggerUi.setup(swaggerSpecs, swaggerOptio
 // Routes
 app.use('/api/health', healthRoutes);
 app.use('/api/auth', authRoutes);
+app.use('/api/projects', projectRoutes);
+app.use('/api/tasks', taskRoutes);
 
 // 404 handler
 app.use(notFoundHandler);

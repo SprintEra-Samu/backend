@@ -71,7 +71,10 @@ exports.login = async (req, res, next) => {
       });
     }
 
-    const user = await User.findOne({ where: { email } });
+    const user = await User.findOne({
+      where: { email },
+      include: [{ model: Role, attributes: ['id', 'name'] }]
+    });
     if (!user) {
       return res.status(401).json({
         success: false,
@@ -92,7 +95,8 @@ exports.login = async (req, res, next) => {
     const payload = {
       user: {
         id: user.id,
-        role_id: user.role_id
+        role_id: user.role_id,
+        role: user.Role ? user.Role.name : null
       }
     };
 
@@ -104,7 +108,8 @@ exports.login = async (req, res, next) => {
         id: user.id,
         name: user.name,
         email: user.email,
-        role_id: user.role_id
+        role_id: user.role_id,
+        Role: user.Role ? { id: user.Role.id, name: user.Role.name } : null
       }
     });
   } catch (error) {
@@ -115,7 +120,13 @@ exports.login = async (req, res, next) => {
 exports.getMe = async (req, res, next) => {
   try {
     const user = await User.findByPk(req.user.id, {
-      attributes: ['id', 'name', 'email', 'role_id', 'created_at']
+      attributes: { exclude: ['password_hash'] },
+      include: [
+        {
+          model: Role,
+          attributes: ['id', 'name']
+        }
+      ]
     });
 
     if (!user) {
@@ -126,7 +137,7 @@ exports.getMe = async (req, res, next) => {
       });
     }
 
-    res.status(200).json(user);
+    return res.status(200).json(user);
   } catch (error) {
     next(error);
   }
