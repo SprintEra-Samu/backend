@@ -1,5 +1,7 @@
 # SprintEra Backend API 🚀
 
+[![CI Pipeline](https://github.com/SprintEra-Samu/backend/actions/workflows/ci.yml/badge.svg)](https://github.com/SprintEra-Samu/backend/actions/workflows/ci.yml)
+
 SprintEra Proje Yönetim Sistemi'nin güçlü ve ölçeklenebilir arka yüz (backend) altyapısı. Bu proje Node.js, Express ve PostgreSQL kullanılarak geliştirilmiş olup; güvenli bir kimlik doğrulama (JWT), rol bazlı yetkilendirme (RBAC), proje ve görev yönetimi, veritabanı migration sistemi ve CI/CD pipeline barındırmaktadır.
 
 ---
